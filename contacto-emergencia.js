@@ -130,7 +130,7 @@ function actualizarContactoEmergencia() {
     var txt_telefono = document.getElementById("txt_telefono").value;
 
 
-    var raw = JSON.stringify({k
+    var raw = JSON.stringify({
         "rut_contacto": txt_rut_contacto,
         "rut_trabajador": rut_trabajador_url,
         "nombre_contacto": txt_nombre_contacto,
