@@ -31,7 +31,7 @@ function aceptaLogin(element,index,arr) {
         console.log(ele.cuenta);
         alert("error")
     } else {
-        window.location.href = "listar-carga-familiar.html";
+        window.location.href = "trabajador/listar-trabajadores.html";
     }
 
 }
