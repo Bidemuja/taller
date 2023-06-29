@@ -7,7 +7,7 @@ function login() {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "query": "select COUNT(*) as cuenta FROM usuario WHERE perfil_usuario='" + username + "'AND contrasena_usuario='" + contraseña + "'"
+        "query": "select COUNT(*) as cuenta FROM usuario WHERE rut_trabajador='" + username + "'AND contrasena_usuario='" + contraseña + "'"
     });
 
     var requestOptions = {
@@ -26,12 +26,13 @@ function login() {
 
 }
 function aceptaLogin(element,index,arr) {
+    var username= document.getElementById("username").value;
     var ele = arr[0]; 
     if (ele.cuenta  === 0) {
         console.log(ele.cuenta);
         alert("error")
     } else {
-        window.location.href = "trabajador/listar-trabajadores.html";
+        window.location.href = "trabajador/listar-trabajadores.html?id="+username;
     }
 
 }
