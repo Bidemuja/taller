@@ -7,7 +7,7 @@ function login() {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "query": "select COUNT(*) as cuenta FROM usuario WHERE rut_trabajador='" + username + "'AND contrasena_usuario='" + contraseña + "'"
+        "query": "select perfil_usuario, COUNT(*) as cuenta FROM usuario WHERE rut_trabajador='" + username + "'AND contrasena_usuario='" + contraseña + "'"
     });
 
     var requestOptions = {
@@ -25,14 +25,24 @@ function login() {
         })
 
 }
-function aceptaLogin(element,index,arr) {
-    var username= document.getElementById("username").value;
-    var ele = arr[0]; 
-    if (ele.cuenta  === 0) {
+function aceptaLogin(element, index, arr) {
+    var username = document.getElementById("username").value;
+    var ele = arr[index];
+    if (ele.cuenta === 0) {
         console.log(ele.cuenta);
         alert("error")
-    } else {
-        window.location.href = "trabajador/listar-trabajadores.html?id="+username;
+    }
+
+    if (ele.cuenta === 1 && ele.perfil_usuario === "rrhh") {
+        console.log(ele.cuenta);
+        console.log(ele.perfil_usuario);
+        window.location.href = "trabajador/listar-trabajadores.html?id=" + username+"&rrhh";
+    }
+    if (ele.cuenta === 1 && ele.perfil_usuario === "trabajador") {
+        console.log(ele.cuenta);
+        console.log(ele.perfil_usuario);
+        window.location.href = "carga-familiar/listar-carga-familiar.html?id=" + username+"&trabajador";
+        //es necesario cambiar la página de redirección de acuerdo a si son trabajadores o recursos humanos.
     }
 
 }
