@@ -15,45 +15,46 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <!--<link rel="stylesheet" href="../css/principal.css">-->
+    <link rel="stylesheet" href="../estilos forms/forms.css">
 
 </head>
 
-<body onload="listarContactoEmergencia();">
-    <div class="container">
-        <!--Barra de Navegación-->
-        <div id="barra-navegacion">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <img id="img_navbar" src="../img/crm_24x24.png">
-                <a class="navbar-brand" href="../index.html">Módulos
-                </a>
-                <div id="dropdown" class="container-fluid">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Menú desplegable
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../trabajador/listar-trabajadors.html">trabajadores</a>
-                            </li>
-                            <li><a class="dropdown-item" href="../usuario/listar-usuarios.html">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="../tipo-gestion/listar-tipo-gestion.html">Tipo de
-                                    Gestión</a></li>
-                            <li><a class="dropdown-item" href="../gestion/listar-gestiones.html">Gestiones</a></li>
-                            <li><a class="dropdown-item" href="../resultado/listar-resultado.html">Resultados</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../index.html">Volver al inicio</a></li>
-                        </ul>
-                    </li>
+<body id="body" onload="listarContactoEmergencia();">
+    <!--Barra de Navegación-->
+    <div class="container2">
+        <div class="navbar">
+            <a class="logo" href="#"><img width="70px" src="../img/crm_24x24.png" alt="Logo"></a>
+            <div class="spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
                 </div>
-            </nav>
+            <div class="nav-items">
+                <a style="text-decoration: none;" href="../portada/portada.html" class="ui-btn">
+                    <span>
+                      Lobby 
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="../contacto-emergencia/agregar-contacto-emergencia.html" class="ui-btn">
+                    <span>
+                      Agregar Contacto
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
+                    <span>
+                      Gestión Trabajadores
+                    </span>
+                </a>
+            </div>
         </div>
+    </div>
         <!--Título-->
-        <h1 id="titulo-contactos">Lista de contactos de emergencia</h1>
-        <hr>
-        <div class="container-fluid">
+        <h1 class="text-white" id="titulo-contactos">Lista de contactos de emergencia</h1>
+        <div class="container">
+        <div class="container">
             <table id="tbl_contacto_emergencia" class="table">
                 <thead>
                     <tr>
@@ -69,56 +70,7 @@
                 </tbody>
             </table>
         </div>
-        <hr>
-        <div>
-            <h1>Agregar contacto de emergencia</h1>
-            <hr>
-            <!--Formulario para crear trabajador-->
-            <div>
-                <form class="container">
-                    <!--RUT-->
-                    <div class="mb-3">
-                        <label for="txt_rut_contacto" class="form-label">RUT</label>
-                        <input type="text" class="form-control" id="txt_rut_contacto" aria-describedby="txt_rut_help"
-                            required>
-                        <div id="txt_rut_help" class="form-text">Rut sin puntos y con guión</div>
-                    </div>
-                    <!--Nombre Contacto de Emergencia-->
-                    <div class="mb-3">
-                        <label for="txt_nombre_contacto" class="form-label">Nombre completo contacto</label>
-                        <input type="text" class="form-control" id="txt_nombre_contacto"
-                            aria-describedby="txt_nombre_help" required>
-                        <div id="txt_nombre_contacto_help" class="form-text">Ingrese el nombre completo de contacto
-                        </div>
-                    </div>
-                    <!--Parentesco Contacto emergencia-->
-                    <div>
-                        <label for="lista-parentesco">Parentesco</label>
-                        <select id="lista-parentesco" class="form-select" aria-label="">
-                            <option selected disabled>Seleccione una opción</option>
-                            <option value="Cónyuge">Cónyuge</option>
-                            <option value="Conviviente">Conviviente</option>
-                            <option value="Hijo(a)">Hijo(a)</option>
-                            <option value="Nieto(a)">Nieto(a)</option>
-                            <option value="Padre mayor de 65 años">Padre mayor de 65 años</option>
-                            <option value="Madre mayor de 65 años">Madre mayor de 65 años</option>
-                        </select>
-                    </div>
-                    <!--Celular-->
-                    <div class="mb-3">
-                        <label for="txt_telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="txt_telefono" aria-describedby="txt_telefono_help"
-                            value="0" required>
-                        <div id="txt_telefono_help" class="form-text">Sin +569. Máximo 8 números</div>
-                    </div>
-                    <!--Botón de envío-->
-                    <input type="button" class="btn btn-primary" onclick="crearContactoEmergencia();"
-                        value="Enviar"></button>
-                </form>
-            </div>
         </div>
-
-    </div>
 </body>
 
 </html>

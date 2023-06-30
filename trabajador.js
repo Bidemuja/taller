@@ -31,7 +31,7 @@ function crearTrabajador() {
     fetch("http://localhost:3000/api/trabajador", requestOptions)
         .then(response => {
             if (response.ok) {
-                alert("trabajador agregado");
+                alert("Trabajador agregado");
                 window.location.href = "listar-trabajadores.html";
             }
         })
@@ -164,7 +164,7 @@ function actualizarTrabajador() {
     fetch("http://localhost:3000/api/trabajador/" + txt_id_trabajador, requestOptions)
         .then(response => {
             if (response.ok) {
-                alert("trabajador actualizado");
+                alert("Trabajador actualizado");
                 window.location.href = "listar-trabajadores.html";
             }
 
@@ -200,9 +200,9 @@ function eliminarTrabajador() {
     fetch("http://localhost:3000/api/trabajador/" + id_trabajador_eliminar, requestOptions)
         .then(response => {
             if (response.ok) {
-                alert("trabajador eliminado");
+                alert("Trabajador eliminado");
             } else {
-                alert("trabajador no puede ser eliminado. El registro está siendo utilizado")
+                alert("Trabajador no puede ser eliminado. El registro está siendo utilizado")
             }
             window.location.href = "listar-trabajadores.html";
 

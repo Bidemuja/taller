@@ -30,19 +30,18 @@ function aceptaLogin(element, index, arr) {
     var ele = arr[index];
     if (ele.cuenta === 0) {
         console.log(ele.cuenta);
-        alert("error")
+        alert("Verifique sus datos de ingreso")
     }
 
     if (ele.cuenta === 1 && ele.perfil_usuario === "rrhh") {
         console.log(ele.cuenta);
         console.log(ele.perfil_usuario);
-        window.location.href = "trabajador/listar-trabajadores.html?id=" + username+"&rrhh";
+        window.location.href = "trabajador/listar-trabajadores.html?id=" + username + "&rrhh";
     }
     if (ele.cuenta === 1 && ele.perfil_usuario === "trabajador") {
         console.log(ele.cuenta);
         console.log(ele.perfil_usuario);
-        window.location.href = "carga-familiar/listar-carga-familiar.html?id=" + username+"&trabajador";
-        //es necesario cambiar la página de redirección de acuerdo a si son trabajadores o recursos humanos.
+        window.location.href = "portada/portada.html?id=" + username + "&trabajador";
     }
 
 }

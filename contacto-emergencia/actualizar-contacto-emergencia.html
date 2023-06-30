@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="../css/principal.css">-->
+    <link rel="stylesheet" href="../estilos forms/forms.css">
 
     <style>
         input:invalid {
@@ -26,39 +26,40 @@
 
 </head>
 
-<body onload="obtenerIDContactoActualizar();">
-    <div class="container-fluid">
-        <!-- Barra de navegación-->
-        <div id="barra-navegacion">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <!--<img id="img_navbar" src="../img/crm_24x24.png">-->
-                <a class="navbar-brand" href="../index.html">Módulos
-                </a>
-                <div id="dropdown" class="container-fluid">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Menú desplegable
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../trabajador/listar-trabajadores.html">trabajadors</a>
-                            </li>
-                            <li><a class="dropdown-item" href="../usuario/listar-usuarios.html">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="../tipo-gestion/listar-tipo-gestion.html">Tipo de
-                                    Gestión</a></li>
-                            <li><a class="dropdown-item" href="../gestion/listar-gestiones.html">Gestiones</a></li>
-                            <li><a class="dropdown-item" href="../resultado/listar-resultado.html">Resultados</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../index.html">Volver al inicio</a></li>
-                        </ul>
-                    </li>
+<body id="body" onload="obtenerIDContactoActualizar();">
+    <!--Barra de Navegación-->
+    <div class="container2">
+        <div class="navbar">
+            <a class="logo" href="#"><img width="70px" src="../img/crm_24x24.png" alt="Logo"></a>
+            <div class="spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
                 </div>
-            </nav>
+            <div class="nav-items">
+                <a style="text-decoration: none;" href="../portada/portada.html" class="ui-btn">
+                    <span>
+                      Lobby 
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="../contacto-emergencia/listar-contacto-emergencia.html" class="ui-btn">
+                    <span>
+                      Lista de Contactos
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
+                    <span>
+                      Gestión Trabajadores
+                    </span>
+                </a>
+            </div>
         </div>
+    </div>
         <!--Título-->
-        <h1>Actualizar contacto emergencia</h1>
+        <h1 class="text-white">Actualizar contacto emergencia</h1>
         <hr>
         <!--Formulacio para crear contacto emergencia-->
         <div>
@@ -78,7 +79,7 @@
                     <div id="txt_nombre_contacto_help" class="form-text">Ingrese el nombre completo de contacto</div>
                 </div>
                 <!--Parentesco Contacto emergencia-->
-                <div>
+                <div style="margin-bottom: 20px;">
                     <label for="lista-parentesco">Parentesco</label>
                     <select id="lista-parentesco" class="form-select" aria-label="">
                         <option selected disabled>Seleccione una opción</option>
