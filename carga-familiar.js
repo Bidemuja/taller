@@ -71,7 +71,7 @@ function crearCargaFamiliar() {
         .then(response => {
             if (response.ok) {
                 alert("Carga familiar agregada");
-                location.reload();
+                window.location.href = "listar-carga-familiar.html?id=" + id_contacto_url;
             }
         })
 }
@@ -193,3 +193,10 @@ function eliminarCargaFamiliar() {
         })
 }
 
+function enviarUrlCargasFamiliares() {
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_contacto_url = urlParametros.get('id');
+    window.location.href = "../carga-familiar/agregar-carga-familiar.html?id="+ id_contacto_url;
+
+}
