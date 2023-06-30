@@ -1,3 +1,4 @@
+var username = document.getElementById("username").value;
 function login() {
     var username = document.getElementById("username").value;
     console.log(username);
