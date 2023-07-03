@@ -1,6 +1,9 @@
 var queryString = window.location.search;
 var urlParametros = new URLSearchParams(queryString);
 var id_contacto_url = urlParametros.get('id');
+var id_usuario_guardar;
+var perfil_usuario_guardar;
+
 //Crear trabajador
 function crearTrabajador() {
     var myHeaders = new Headers();
@@ -122,7 +125,39 @@ function completarFormulario(element) {
     document.getElementById("txt_telefono").value = telefono;
 
 }
+function consultarDatosUsuario(id_trabajador) {
+    var username = id_trabajador
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var raw = JSON.stringify({
+        "query": "select id_usuario, contrasena_usuario, perfil_usuario FROM usuario WHERE rut_trabajador='" + username + "'"
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/dynamic", requestOptions)
+        .then(response => response.json())
+        .then((json) => {
+            json.forEach(completarFormularioUsuario);
+            console.log(json);
+        })
+
+}
+//Completar formulario
+function completarFormularioUsuario(element) {
+    var perfil= element.perfil_usuario;
+    var contraseña = element.contrasena_usuario;
+    document.getElementById("contraseña").value = contraseña;
+    id_usuario_guardar=  element.id_usuario;
+    perfil_usuario_guardar = perfil;
+
+}
 //Obtenemos los datos del trabajador a actualizar
 function obtenerIDtrabajadorActualizar() {
     var queryString = window.location.search;
@@ -131,10 +166,16 @@ function obtenerIDtrabajadorActualizar() {
 
     document.getElementById("txt_id_trabajador").value = id_trabajador_url;
     consultarDatostrabajador(id_trabajador_url);
+    consultarDatosUsuario(id_trabajador_url);
 
 }
 // Actualizamos los datos del trabajador con el método patch
 function actualizarTrabajador() {
+    this.actualizarTrabajadorCompleto();
+    this.actualizarContraseña()
+}
+
+function actualizarTrabajadorCompleto(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -166,12 +207,42 @@ function actualizarTrabajador() {
         .then(response => {
             if (response.ok) {
                 alert("Trabajador actualizado");
-                window.location.href = "../menu-personal/listar-datos.html?id="+id_contacto_url;
             }
 
         })
 }
+function actualizarContraseña(){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var txt_id_trabajador = document.getElementById("txt_id_trabajador").value;
+    var txt_nombre = document.getElementById("txt_nombre").value;
+    var contraseña_actualizada = document.getElementById("contraseña").value;
+
+    var raw = JSON.stringify({
+        "id_usuario":id_usuario_guardar,
+        "nombre_usuario": txt_nombre,
+        "rut_trabajador": txt_id_trabajador,
+        "perfil_usuario": perfil_usuario_guardar,
+        "contrasena_usuario": contraseña_actualizada,
+    });
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/api/usuario/" + id_usuario_guardar, requestOptions)
+        .then(response => {
+            if (response.ok) {
+                console.log(id_usuario_guardar, txt_nombre, txt_id_trabajador, perfil_usuario_guardar, contraseña_actualizada)
+            }
+
+        })
+    
+}
 //Obtenemos id del trabajador a eliminar
 function obtenerIDTrabajadorEliminar() {
     //Utilizamos search para acceder a las variables recibidas mediante URL

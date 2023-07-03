@@ -1,9 +1,7 @@
 var username = document.getElementById("username").value;
 function login() {
     var username = document.getElementById("username").value;
-    console.log(username);
     var contraseña = document.getElementById("password").value;
-    console.log(contraseña);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -34,12 +32,12 @@ function aceptaLogin(element, index, arr) {
         alert("Verifique sus datos de ingreso")
     }
 
-    if (ele.cuenta === 1 && ele.perfil_usuario === "rrhh") {
+    if (ele.cuenta === 1 && ele.perfil_usuario === "Recursos Humanos") {
         console.log(ele.cuenta);
         console.log(ele.perfil_usuario);
         window.location.href = "trabajador/listar-trabajadores.html?id=" + username + "&rrhh";
     }
-    if (ele.cuenta === 1 && ele.perfil_usuario === "trabajador") {
+    if (ele.cuenta === 1 && ele.perfil_usuario === "Trabajador") {
         console.log(ele.cuenta);
         console.log(ele.perfil_usuario);
         window.location.href = "portada/portada.html?id=" + username + "&trabajador";
