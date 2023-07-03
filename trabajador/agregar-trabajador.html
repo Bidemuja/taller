@@ -102,6 +102,21 @@
                         value="0" required>
                     <div id="txt_telefono_help" class="form-text">Sin +569. Máximo 8 números</div>
                 </div>
+                <!--Perfil Usuario-->
+                <div style="margin-bottom: 20px;">
+                    <label for="seleccion-perfil">Tipo de Trabajador</label>
+                    <select id="seleccion-perfil" class="form-select" aria-label="">
+                        <option selected disabled>Seleccione una opción</option>
+                        <option value="Trabajador">Trabajador</option>
+                        <option value="Recursos Humanos">Recursos Humanos</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" aria-describedby="contraseña"
+                        required>
+                    <div id="contraseña" class="form-text">Cree una contraseña para el trabajador</div>
+                </div>
                 <!--Botón de envío-->
                 <input type="button" class="btn btn-primary" onclick="crearTrabajador();" value="Enviar"></button>
             </form>

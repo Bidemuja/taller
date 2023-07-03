@@ -1,5 +1,9 @@
 //Crear trabajador
 function crearTrabajador() {
+    this.crearTrabajadorTabla();
+    this.crearTrabajadorUsuario();
+}
+function crearTrabajadorTabla() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -32,9 +36,39 @@ function crearTrabajador() {
         .then(response => {
             if (response.ok) {
                 alert("Trabajador agregado");
+            }
+        })
+}
+function crearTrabajadorUsuario() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    //Variables con los datos de formulario para crear trabajador
+    var txt_id_trabajador = document.getElementById("txt_id_trabajador").value;
+    var txt_nombre = document.getElementById("txt_nombre").value;
+    var seleccion_perfil = document.getElementById("seleccion-perfil").value;
+    var contraseña = document.getElementById("contraseña").value;
+
+    var raw = JSON.stringify({
+        "nombre_usuario": txt_nombre,
+        "rut_trabajador": txt_id_trabajador,
+        "perfil_usuario": seleccion_perfil,
+        "contrasena_usuario": contraseña
+
+    });
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    fetch("http://localhost:3000/api/usuario", requestOptions)
+        .then(response => {
+            if (response.ok) {
                 window.location.href = "listar-trabajadores.html";
             }
         })
+
 }
 // Lista de trabajadores
 function listarTrabajadores() {
