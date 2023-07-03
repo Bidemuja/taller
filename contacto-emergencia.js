@@ -75,7 +75,7 @@ function crearContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia agregado");
-                location.reload();
+                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url;
             }
         })
 }
@@ -200,3 +200,9 @@ function eliminarContactoEmergencia() {
         })
 }
 
+function agregarContactoEmergenciaRedireccion() {
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_contacto_url = urlParametros.get('id');
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/contacto-emergencia/agregar-contacto-emergencia.html?id=" + id_contacto_url;
+}

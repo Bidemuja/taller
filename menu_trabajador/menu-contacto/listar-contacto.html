@@ -31,19 +31,31 @@
                 <div></div>
                 <div></div>
                 <div></div>
-                </div>
+            </div>
             <div class="nav-items">
                 <a style="text-decoration: none;" onclick="enviarUrlPersonales()" class="ui-btn">
                     <span>
-                      Inicio
+                        Inicio
                     </span>
                 </a>
+                <a style="text-decoration: none;" onclick="agregarContactoEmergenciaRedireccion()" class="ui-btn">
+                    <span>
+                        Agregar contacto de emergencia
+                    </span>
+                </a>
+                <div class="nav-items">
+                    <a style="text-decoration: none;" href="C:\xampp\htdocs\Proyectos\yury\index.html" class="ui-btn">
+                        <span>
+                            Cerrar sesión
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-        <!--Título-->
-        <h1 class="text-white" id="titulo-contactos">Lista de contactos de emergencia</h1>
-        <div class="container">
+    <!--Título-->
+    <h1 class="text-white" id="titulo-contactos">Lista de contactos de emergencia</h1>
+    <div class="container">
         <div class="container">
             <table id="tbl_contacto_emergencia" class="table">
                 <thead>
@@ -52,7 +64,7 @@
                         <th>NOMBRE</th>
                         <th>PARENTESCO</th>
                         <th>TELÉFONO</th>
-                        <th>OPCIONES</th>
+                        <th>ELIMINAR CONTACTO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +72,7 @@
                 </tbody>
             </table>
         </div>
-        </div>
+    </div>
 </body>
 
 </html>

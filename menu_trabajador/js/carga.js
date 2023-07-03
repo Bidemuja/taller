@@ -32,9 +32,7 @@ function completarFila(element, index, arr) {
           <td>${element.sexo_carga}</td>
           <td>${element.parentesco_carga}</td>
           <td>
-    <a href='eliminar-carga-familiar.html?id=${element.rut_carga}&nombre=${element.nombre_carga}&idtrab=${element.rut_trabajador}'>   <img src='../img/eliminar_24x24.png'></a> 
-    <a href='actualizar-carga-familiar.html?id=${element.rut_carga}&idtrab=${element.rut_trabajador}'> <img src='../img/actualizar_24x24.png'></a> 
-    </td>
+    <a href='eliminar-carga.html?id=${element.rut_carga}&nombre=${element.nombre_carga}&idtrab=${element.rut_trabajador}'>   <img src='C:/xampp/htdocs/Proyectos/yury/img/eliminar_24x24.png'></a> </td>
      </tr>`
     }
 }
@@ -71,7 +69,7 @@ function crearCargaFamiliar() {
         .then(response => {
             if (response.ok) {
                 alert("Carga familiar agregada");
-                location.reload();
+                window.location.href = "C:/xampp/htdocs/Proyectos/yury/menu_trabajador/menu-carga/listar-carga.html?id=" + id_contacto_url;
             }
         })
 }
@@ -147,7 +145,7 @@ function actualizarCargaFamiliar() {
             if (response.ok) {
                 alert("Carga familiar actualizada");
             }
-            window.location.href = "listar-carga-familiar.html?id=" + rut_trabajador_url;
+            window.location.href = "listar-carga.html?id=" + rut_trabajador_url;
         })
 }
 
@@ -173,7 +171,7 @@ function eliminarCargaFamiliar() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var rut_trabajador_url = urlParametros.get('idtrab');
-  
+
     var rut_carga_eliminar = document.getElementById('hdn_rut_carga').value;
 
     var requestOptions = {
@@ -185,7 +183,7 @@ function eliminarCargaFamiliar() {
         .then(response => {
             if (response.ok) {
                 alert("Carga familiar eliminada");
-                window.location.href = "listar-carga-familiar.html?id=" + rut_trabajador_url;
+                window.location.href = "listar-carga.html?id=" + rut_trabajador_url;
             } else {
                 alert("Carga familiar no puede ser eliminada.")
             }
@@ -197,6 +195,12 @@ function enviarUrlPersonales() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_contacto_url = urlParametros.get('id');
-    window.location.href = "C:/xampp/htdocs/Proyectos/yury/portada/portada.html?id="+ id_contacto_url;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/portada/portada.html?id=" + id_contacto_url;
 
+}
+function agregarCargaFamiliarRedireccion() {
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_contacto_url = urlParametros.get('id');
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/menu_trabajador/menu-carga/agregar-carga.html?id=" + id_contacto_url;
 }

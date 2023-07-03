@@ -72,7 +72,7 @@ function completarFila(element, index, arr) {
           <td>${element.direccion}</td>
           <td>${element.telefono}</td>
 
-    <td> <a href='../menu-personal/actualizar-datos.html?id=${element.rut}'> <img src='../img/actualizar_24x24.png'></a> </td>
+    <td> <a href='../menu-personal/actualizar-datos.html?id=${element.rut}'><img src='C:/xampp/htdocs/Proyectos/yury/img/actualizar_24x24.png'></a> </td>
       </tr>`
     }
 }

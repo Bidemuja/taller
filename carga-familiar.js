@@ -164,7 +164,7 @@ function obtenerIDCargaEliminar() {
     //Agregamos ID a campo oculto
     document.getElementById('hdn_rut_carga').value = rut_carga_url;
     //Mostramos mensaje de confirmación
-    var mensaje = "¿" + "Desea eliminar a " + nombre_url + "como carga familiar?";
+    var mensaje = "¿" + "Desea eliminar a " + nombre_url + " como carga familiar?";
     document.getElementById("alt_eliminacion").innerHTML = mensaje;
 }
 // Eliminar carga familiar

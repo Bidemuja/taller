@@ -72,8 +72,8 @@ function crearDatosLaborales() {
     fetch("http://localhost:3000/api/datos_laborales", requestOptions)
         .then(response => {
             if (response.ok) {
-                alert("Datos laborales agregados agregado");
-                location.reload();
+                alert("Datos laborales agregados");
+                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
             }
         })
 }
@@ -167,7 +167,7 @@ function actualizarDatosLaborales() {
     fetch("http://localhost:3000/api/datos_laborales/" + id_datos_laborales, requestOptions)
         .then(response => {
             if (response.ok) {
-                alert("Contacto de emergencia actualizado");
+                alert("Datos laborales actualizados");
                 window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
             }
 
@@ -204,4 +204,9 @@ function eliminarDatosLaborales() {
 
         })
 }
-
+function agregarDatosLaboralesRedireccion() {
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_contacto_url = urlParametros.get('id');
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/datos-laborales/agregar-datos-laborales.html?id=" + id_contacto_url;
+}

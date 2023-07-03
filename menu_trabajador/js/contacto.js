@@ -32,11 +32,8 @@ function completarFila(element, index, arr) {
           <td>${element.parentesco_contacto}</td>
           <td>${element.telefono_contacto}</td>
           <td>
-    <a href='eliminar-contacto-emergencia.html?id=${element.rut_contacto}&nombre=${element.nombre_contacto}&rut=${element.rut_trabajador}'>   <img src='../img/eliminar_24x24.png'></a> 
-    <a href='actualizar-contacto-emergencia.html?id=${element.rut_contacto}&idtrab=${element.rut_trabajador}'> <img src='../img/actualizar_24x24.png'></a> 
-    </td>
-  
-      </tr>`
+    <a href='eliminar-contacto.html?id=${element.rut_contacto}&nombre=${element.nombre_contacto}&rut=${element.rut_trabajador}'>   <img src='C:/xampp/htdocs/Proyectos/yury/img/eliminar_24x24.png'></a> 
+    </tr>`
     }
 }
 
@@ -75,7 +72,7 @@ function crearContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia agregado");
-                location.reload();
+                window.location.href = "listar-contacto.html?id=" + id_trabajador_contacto_url;
             }
         })
 }
@@ -150,7 +147,7 @@ function actualizarContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia actualizado");
-                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url;
+                window.location.href = "listar-contacto.html?id=" + rut_trabajador_url;
             }
 
         })
@@ -165,7 +162,7 @@ function obtenerIDContactoEliminar() {
     //Creamos variable con el id del contacto
     var rut_contacto_url = urlParametros.get('id');
     var nombre_url = urlParametros.get('nombre');
-    var rut_trabajador= urlParametros.get('rut');
+    var rut_trabajador = urlParametros.get('rut');
 
     //Agregamos ID a campo oculto
     document.getElementById('hdn_rut_contacto').value = rut_contacto_url;
@@ -179,7 +176,7 @@ function eliminarContactoEmergencia() {
     //Extraemos los parámetros
     var urlParametros = new URLSearchParams(queryString);
     //Creamos variable con el id del contacto
-    var rut_trabajador= urlParametros.get('rut');
+    var rut_trabajador = urlParametros.get('rut');
     //Obtenemos id a eliminar
     var rut_contacto_eliminar = document.getElementById('hdn_rut_contacto').value;
 
@@ -192,7 +189,7 @@ function eliminarContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia eliminado");
-                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador;
+                window.location.href = "listar-contacto.html?id=" + rut_trabajador;
             } else {
                 alert("Contacto de emergencia no puede ser eliminado.")
             }
@@ -203,6 +200,13 @@ function enviarUrlPersonales() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_contacto_url = urlParametros.get('id');
-    window.location.href = "C:/xampp/htdocs/Proyectos/yury/portada/portada.html?id="+ id_contacto_url;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/portada/portada.html?id=" + id_contacto_url;
+
+}
+function agregarContactoEmergenciaRedireccion() {
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_contacto_url = urlParametros.get('id');
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/menu_trabajador/menu-contacto/agregar-contacto.html?id=" + id_contacto_url;
 
 }
