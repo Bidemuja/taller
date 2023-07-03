@@ -237,7 +237,8 @@ function actualizarContraseña(){
     fetch("http://localhost:3000/api/usuario/" + id_usuario_guardar, requestOptions)
         .then(response => {
             if (response.ok) {
-                console.log(id_usuario_guardar, txt_nombre, txt_id_trabajador, perfil_usuario_guardar, contraseña_actualizada)
+                window.location.href="C:/xampp/htdocs/Proyectos/yury/menu_trabajador/menu-personal/listar-datos.html?id="+id_contacto_url;
+
             }
 
         })
