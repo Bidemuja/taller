@@ -46,7 +46,7 @@ function crearDatosLaborales() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    //Variables con los datos de formulario para agreagar datos laborales
+    //Variables con los datos de formulario para agregar datos laborales
 
     var txt_cargo = document.getElementById("lista-cargo-trabajo").value;
     var fecha_ingreso = document.getElementById("txt_fecha_ingreso").value;

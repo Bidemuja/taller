@@ -72,17 +72,25 @@ function crearTrabajadorUsuario() {
 }
 // Lista de trabajadores
 function listarTrabajadores() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "query": "select dl.cargo_trabajador, dl.area_trabajador, dl.departamento_trabajador, dl.rut_trabajador,t.rut, t.nombre, t.sexo, t.fecha_nacimiento, t.direccion, t.telefono FROM datos_laborales dl, trabajador t WHERE rut_trabajador=rut"
+    });
+
     var requestOptions = {
-        method: 'GET',
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/trabajador?_size=100", requestOptions)
+    fetch("http://localhost:3000/dynamic", requestOptions)
         .then(response => response.json())
         .then((json) => {
             json.forEach(completarFila);
             return json;
-
         })
         .then((json) => {
             $("#tbl_trabajadores").DataTable();
@@ -90,24 +98,45 @@ function listarTrabajadores() {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 }
+/* var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
 
+fetch("http://localhost:3000/api/trabajador?_size=100", requestOptions)
+  .then(response => response.json())
+  .then((json) => {
+      json.forEach(completarFila);
+      return json;
+
+  })
+  .then((json) => {
+      $("#tbl_trabajadores").DataTable();
+  })
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}
+*/
 //Completar fila
 function completarFila(element, index, arr) {
     arr[index] = document.querySelector('#tbl_trabajadores tbody').innerHTML +=
         `<tr>
-          <td>${element.rut}</td>
-          <td>${element.nombre}</td>
-          <td>${element.sexo}</td>
-          <td>${formatDate(element.fecha_nacimiento)}</td>
-          <td>${element.direccion}</td>
-          <td>${element.telefono}</td>
-          <td> <a href='eliminar-trabajador.html?id=${element.rut}&nombre=${element.nombre}'>   <img alt='Eliminar trabajador' width=40 height=40 src='../img/eliminar_24x24.png'></a> </td>
-    <td> <a href='actualizar-trabajador.html?id=${element.rut}'> <img src='../img/actualizar_24x24.png'></a> </td>
-    <td><a href='../datos-laborales/listar-datos-laborales.html?id=${element.rut}'> <img alt='Datos laborales' width=50 height=50  src='../img/resultados_640x640.png'></a> </td>
-    <td><a href='../contacto-emergencia/listar-contacto-emergencia.html?id=${element.rut}'> <img src='../img/emergencia_48x48.png'></a></td>
-    <td><a href='../carga-familiar/listar-carga-familiar.html?id=${element.rut}'> <img src='../img/carga_familiar_48x48.png'></a> </td>
-    </td>
-      </tr>`
+       <td>${element.rut}</td>
+       <td>${element.nombre}</td>
+       <td>${element.sexo}</td>
+       <td>${formatDate(element.fecha_nacimiento)}</td>
+       <td>${element.direccion}</td>
+       <td>${element.telefono}</td>
+       <td>${element.cargo_trabajador}</td>
+       <td>${element.area_trabajador}</td>
+       <td>${element.departamento_trabajador}</td>
+       <td> <a href='eliminar-trabajador.html?id=${element.rut}&nombre=${element.nombre}'>   <img alt='Eliminar trabajador' width=40 height=40 src='../img/eliminar_24x24.png'></a> </td>
+ <td> <a href='actualizar-trabajador.html?id=${element.rut}'> <img src='../img/actualizar_24x24.png'></a> </td>
+ <td><a href='../datos-laborales/listar-datos-laborales.html?id=${element.rut}'> <img alt='Datos laborales' width=50 height=50  src='../img/resultados_640x640.png'></a> </td>
+ <td><a href='../contacto-emergencia/listar-contacto-emergencia.html?id=${element.rut}'> <img src='../img/emergencia_48x48.png'></a></td>
+ <td><a href='../carga-familiar/listar-carga-familiar.html?id=${element.rut}'> <img src='../img/carga_familiar_48x48.png'></a> </td>
+ </td>
+   </tr>`
 }
 
 function formatDate(date) {
