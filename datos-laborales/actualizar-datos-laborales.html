@@ -28,88 +28,93 @@
 
 <body id="body" onload="obtenerIDDatosActualizar();">
     <!--Barra de Navegación-->
-   <div class="container2">
-    <div class="navbar">
-        <a class="logo" href="#"><img width="70px" src="../img/crm_24x24.png" alt="Logo"></a>
-        <div class="spinner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <div class="container2">
+        <div class="navbar">
+            <a class="logo" href="#"><img width="70px" src="../img/crm_24x24.png" alt="Logo"></a>
+            <div class="spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-        <div class="nav-items">
-            <a style="text-decoration: none;" href="../datos-laborales/listar-datos-laborales.html" class="ui-btn">
-                <span>
-                  Lista de Datos laborales
-                </span>
-            </a>
-            <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
-                <span>
-                  Gestión Trabajadores
-                </span>
-            </a>
+            <div class="nav-items">
+                <a style="text-decoration: none;" href="../datos-laborales/listar-datos-laborales.html" class="ui-btn">
+                    <span>
+                        Lista de Datos laborales
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
+                    <span>
+                        Inicio
+                    </span>
+                </a>
+                <a style="text-decoration: none;" href="C:\xampp\htdocs\Proyectos\yury\index.html" class="ui-btn">
+                    <span>
+                        Cerrar sesión
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-        <!--Título-->
-        <h1 class="text-white">Actualizar datos laborales</h1>
-        <hr>
-        <!--Formulario para actualizar datos laborales-->
-        <div>
-            <form class="container">
-                <!--Cargo trabajador-->
-                <div style="margin-bottom: 20px;">
-                    <label style="margin-bottom: 7px;"for="lista-cargo-trabajo">Cargo del trabajador</label>
-                    <select id="lista-cargo-trabajo" class="form-select" aria-label="">
-                        <option selected disabled>Seleccione una opción</option>
-                        <option value="Vendedor">Vendedor</option>
-                        <option value="Encargado de despachos">Encargado de despachos</option>
-                        <option value="Gerente">Gerente</option>
-                        <option value="Encargado de bodega">Encargado de bodega</option>
-                        <option value="Supervisor de Marketing">Supervisor de Marketing</option>
-                        <option value="Encargado de Servicio al cliente">Encargado de Servicio al cliente</option>
-                    </select>
+    <!--Título-->
+    <h1 class="text-white">Actualizar datos laborales</h1>
+    <hr>
+    <!--Formulario para actualizar datos laborales-->
+    <div>
+        <form class="container">
+            <!--Cargo trabajador-->
+            <div style="margin-bottom: 20px;">
+                <label style="margin-bottom: 7px;" for="lista-cargo-trabajo">Cargo del trabajador</label>
+                <select id="lista-cargo-trabajo" class="form-select" aria-label="">
+                    <option selected disabled>Seleccione una opción</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Encargado de despachos">Encargado de despachos</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Encargado de bodega">Encargado de bodega</option>
+                    <option value="Supervisor de Marketing">Supervisor de Marketing</option>
+                    <option value="Encargado de Servicio al cliente">Encargado de Servicio al cliente</option>
+                </select>
+            </div>
+            <!--Fecha de ingreso a la empresa-->
+            <div style="margin-bottom: 20px;" class="mb-3">
+                <label for="txt_fecha_ingreso" class="form-label">Fecha de Ingreso</label>
+                <input type="date" class="form-control" id="txt_fecha_ingreso" aria-describedby="txt_fecha_ingreso_help"
+                    required>
+                <div id="txt_fecha_ingreso_help" class="form-text">
                 </div>
-                <!--Fecha de ingreso a la empresa-->
-                <div style="margin-bottom: 20px;" class="mb-3">
-                    <label for="txt_fecha_ingreso" class="form-label">Fecha de Ingreso</label>
-                    <input type="date" class="form-control" id="txt_fecha_ingreso"
-                        aria-describedby="txt_fecha_ingreso_help" required>
-                    <div id="txt_fecha_ingreso_help" class="form-text">
-                    </div>
-                </div>
-                <!--Lista de area de trabajo-->
-                <div style="margin-bottom: 20px;">
-                    <label for="lista-area-trabajo">Área de trabajo</label>
-                    <select id="lista-area-trabajo" class="form-select" aria-label="">
-                        <option selected disabled>Seleccione una opción</option>
-                        <option value="Ventas">Ventas</option>
-                        <option value="Despachos">Despachos</option>
-                        <option value="Gerencia">Gerencia</option>
-                        <option value="Bodega">Bodega</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Servicio al cliente">Servicio al cliente</option>
-                    </select>
-                </div>
-                <!--Departamento de trabajo-->
-                <div style="margin-bottom: 20px;"> 
-                    <label for="lista-departamentos-trabajo">Departamento de trabajo</label>
-                    <select id="lista-departamentos-trabajo" class="form-select" aria-label="">
-                        <option selected disabled>Seleccione un departamento</option>
-                        <option value="Ventas">Ventas</option>
-                        <option value="Logística">Logística</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Servicio al cliente">Servicio al cliente</option>
-                    </select>
-                </div>
+            </div>
+            <!--Lista de area de trabajo-->
+            <div style="margin-bottom: 20px;">
+                <label for="lista-area-trabajo">Área de trabajo</label>
+                <select id="lista-area-trabajo" class="form-select" aria-label="">
+                    <option selected disabled>Seleccione una opción</option>
+                    <option value="Ventas">Ventas</option>
+                    <option value="Despachos">Despachos</option>
+                    <option value="Gerencia">Gerencia</option>
+                    <option value="Bodega">Bodega</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Servicio al cliente">Servicio al cliente</option>
+                </select>
+            </div>
+            <!--Departamento de trabajo-->
+            <div style="margin-bottom: 20px;">
+                <label for="lista-departamentos-trabajo">Departamento de trabajo</label>
+                <select id="lista-departamentos-trabajo" class="form-select" aria-label="">
+                    <option selected disabled>Seleccione un departamento</option>
+                    <option value="Ventas">Ventas</option>
+                    <option value="Logística">Logística</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Servicio al cliente">Servicio al cliente</option>
+                </select>
+            </div>
 
-                <!--Botón de envío-->
-                <input type="button" class="btn btn-primary" onclick="actualizarDatosLaborales();"
-                    value="Actualizar"></button>
-            </form>
-        </div>
+            <!--Botón de envío-->
+            <input type="button" class="btn btn-primary" onclick="actualizarDatosLaborales();"
+                value="Actualizar"></button>
+        </form>
+    </div>
 </body>
 
 </html>
