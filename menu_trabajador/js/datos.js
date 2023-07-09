@@ -131,7 +131,7 @@ function consultarDatosUsuario(id_trabajador) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "query": "select id_usuario, contrasena_usuario, perfil_usuario FROM usuario WHERE rut_trabajador='" + username + "'"
+        "query": "select id_usuario, contrasena_usuario, perfil_usuario, estado FROM usuario WHERE rut_trabajador='" + username + "'"
     });
 
     var requestOptions = {
@@ -225,6 +225,7 @@ function actualizarContraseña(){
         "rut_trabajador": txt_id_trabajador,
         "perfil_usuario": perfil_usuario_guardar,
         "contrasena_usuario": contraseña_actualizada,
+        "estado": "Habilitado"
     });
 
     var requestOptions = {

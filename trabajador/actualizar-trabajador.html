@@ -44,7 +44,7 @@
                       Listado de Trabajadores
                     </span>
                 </a>
-                <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
+                <a style="text-decoration: none;" onclick="filtroInicio();" class="ui-btn">
                     <span>
                       Inicio
                     </span>
@@ -60,7 +60,7 @@
         <!--Título-->
         <h1 class="text-white">Actualizar trabajador</h1>
         <hr>
-        <!--Formulacio para crear trabajador-->
+        <!--Formulario para crear trabajador-->
         <div>
             <form class="container">
                 <!--RUT-->
@@ -106,6 +106,21 @@
                         value="0">
                     <div id="txt_telefono_help" class="form-text">Sin +569. Máximo 8 números</div>
                 </div>
+                <!--Contraseña-->
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="text" class="form-control" id="contraseña" aria-describedby="txt_nombres_help">
+                    <div id="txt_nombre_help" class="form-text">Actualizar contraseña</div>
+                </div>
+                <!--Estado de la cuenta-->
+                <div style="margin-bottom: 20px;">
+                    <label for="lista-estado">Estado de la cuenta</label>
+                    <select id="lista-estado" class="form-select" aria-label="">
+                        <option value="Habilitado">Habilitado</option>
+                        <option value="Inhabilitado">Inhabilitado</option>
+                    </select>
+                </div>
+
                 <!--Botón de envío-->
                 <input type="button" class="btn btn-primary" onclick="actualizarTrabajador();" value="Actualizar trabajador"></button>
             </form>

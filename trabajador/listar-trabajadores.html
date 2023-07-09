@@ -38,7 +38,13 @@
                         Agregar Trabajador
                     </span>
                 </a>
-                <a style="text-decoration: none;" href="../trabajador/listar-trabajadores.html" class="ui-btn">
+                <a style="text-decoration: none;" onclick="filtroAcepta();" class="ui-btn">
+                    <span>
+                        Filtrar
+                    </span>
+                </a>
+
+                <a style="text-decoration: none;" onclick="filtroInicio();" class="ui-btn">
                     <span>
                         Inicio
                     </span>
@@ -65,21 +71,18 @@
     </div>
     <!--Título-->
     <h1 class="text-white">Recursos Humanos - Gestión de Trabajadores</h1>
-    <div class="container-fluid">
-        <div class="container3">
+    <div class="container">
+        <div class="container">
             <table id="tbl_trabajadores" class="table">
                 <thead>
                     <tr>
                         <th>RUT</th>
                         <th>NOMBRE</th>
                         <th>SEXO</th>
-                        <th>FECHA NAC.</th>
+                        <th>FECHA DE NACIMIENTO</th>
                         <th>DIRECCIÓN</th>
-                        <th>CELULAR</th>
-                        <th>CARGO</th>
-                        <th>AREA</th>
-                        <th>DPTO</th>
-                        <th>BORRAR</th>
+                        <th>TELÉFONO</th>
+                        <th>ELIMINAR</th>
                         <th>ACTUALIZAR</th>
                         <th>DATOS LABORALES</th>
                         <th>CONTACTO EMERGENCIA</th>

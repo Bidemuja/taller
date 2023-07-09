@@ -1,6 +1,7 @@
 var queryString = window.location.search;
 var urlParametros = new URLSearchParams(queryString);
 var id_trabajador_contacto_url = urlParametros.get('id');
+var iduser = urlParametros.get('iduser');
 
 // Listar Datos Laborales
 function listarDatosLaborales() {
@@ -33,8 +34,8 @@ function completarFila(element, index, arr) {
           <td>${element.area_trabajador}</td>
           <td>${element.departamento_trabajador}</td>
           <td>
-    <a href='eliminar-datos-laborales.html?iddatos=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}'> <img src='../img/eliminar_24x24.png'></a> 
-    <a href='actualizar-datos-laborales.html?iddato=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}'> <img src='../img/actualizar_24x24.png'></a> 
+    <a href='eliminar-datos-laborales.html?iddatos=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}&iduser=${iduser}'> <img src='../img/eliminar_24x24.png'></a> 
+    <a href='actualizar-datos-laborales.html?iddato=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> 
     </td>
   
       </tr>`
@@ -73,7 +74,7 @@ function crearDatosLaborales() {
         .then(response => {
             if (response.ok) {
                 alert("Datos laborales agregados");
-                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
+                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url+"&iduser="+iduser;
             }
         })
 }
@@ -168,7 +169,7 @@ function actualizarDatosLaborales() {
         .then(response => {
             if (response.ok) {
                 alert("Datos laborales actualizados");
-                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
+                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url+"&iduser="+iduser;
             }
 
         })
@@ -208,5 +209,11 @@ function agregarDatosLaboralesRedireccion() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_contacto_url = urlParametros.get('id');
-    window.location.href = "C:/xampp/htdocs/Proyectos/yury/datos-laborales/agregar-datos-laborales.html?id=" + id_contacto_url;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/datos-laborales/agregar-datos-laborales.html?id=" + id_contacto_url+"&iduser="+iduser;
+}
+function filtroInicio(){
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_trabajador_url = urlParametros.get('iduser');
+    window.location.href= "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser="+id_trabajador_url+"&iduser="+iduser;
 }

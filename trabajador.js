@@ -1,3 +1,6 @@
+var queryString = window.location.search;
+var urlParametros = new URLSearchParams(queryString);
+var iduser = urlParametros.get('iduser');
 //Crear trabajador
 function crearTrabajador() {
     this.crearTrabajadorTabla();
@@ -65,13 +68,13 @@ function crearTrabajadorUsuario() {
     fetch("http://localhost:3000/api/usuario", requestOptions)
         .then(response => {
             if (response.ok) {
-                window.location.href = "listar-trabajadores.html";
+                window.location.href = "listar-trabajadores.html?iduser="+iduser;
             }
         })
 
 }
 // Lista de trabajadores
-function listarTrabajadores() {
+function listarTrabajadoresJefe() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -89,7 +92,7 @@ function listarTrabajadores() {
     fetch("http://localhost:3000/dynamic", requestOptions)
         .then(response => response.json())
         .then((json) => {
-            json.forEach(completarFila);
+            json.forEach(completarFilaJefe);
             return json;
         })
         .then((json) => {
@@ -98,27 +101,8 @@ function listarTrabajadores() {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 }
-/* var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
-
-fetch("http://localhost:3000/api/trabajador?_size=100", requestOptions)
-  .then(response => response.json())
-  .then((json) => {
-      json.forEach(completarFila);
-      return json;
-
-  })
-  .then((json) => {
-      $("#tbl_trabajadores").DataTable();
-  })
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-}
-*/
 //Completar fila
-function completarFila(element, index, arr) {
+function completarFilaJefe(element, index, arr) {
     arr[index] = document.querySelector('#tbl_trabajadores tbody').innerHTML +=
         `<tr>
        <td>${element.rut}</td>
@@ -130,11 +114,53 @@ function completarFila(element, index, arr) {
        <td>${element.cargo_trabajador}</td>
        <td>${element.area_trabajador}</td>
        <td>${element.departamento_trabajador}</td>
-       <td> <a href='eliminar-trabajador.html?id=${element.rut}&nombre=${element.nombre}'>   <img alt='Eliminar trabajador' width=40 height=40 src='../img/eliminar_24x24.png'></a> </td>
- <td> <a href='actualizar-trabajador.html?id=${element.rut}'> <img src='../img/actualizar_24x24.png'></a> </td>
- <td><a href='../datos-laborales/listar-datos-laborales.html?id=${element.rut}'> <img alt='Datos laborales' width=50 height=50  src='../img/resultados_640x640.png'></a> </td>
- <td><a href='../contacto-emergencia/listar-contacto-emergencia.html?id=${element.rut}'> <img src='../img/emergencia_48x48.png'></a></td>
- <td><a href='../carga-familiar/listar-carga-familiar.html?id=${element.rut}'> <img src='../img/carga_familiar_48x48.png'></a> </td>
+       <td> <a href='eliminar-trabajador.html?id=${element.rut}&nombre=${element.nombre}&iduser=${iduser}'>   <img alt='Eliminar trabajador' width=40 height=40 src='../img/eliminar_24x24.png'></a> </td>
+ <td> <a href='actualizar-trabajador.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> </td>
+ <td><a href='../datos-laborales/listar-datos-laborales.html?id=${element.rut}&iduser=${iduser}'> <img alt='Datos laborales' width=50 height=50  src='../img/resultados_640x640.png'></a> </td>
+ <td><a href='../contacto-emergencia/listar-contacto-emergencia.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/emergencia_48x48.png'></a></td>
+ <td><a href='../carga-familiar/listar-carga-familiar.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/carga_familiar_48x48.png'></a> </td>
+ </td>
+   </tr>`
+}
+
+function listarTrabajadores() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/api/trabajador?_size=100", requestOptions)
+        .then(response => response.json())
+        .then((json) => {
+            json.forEach(completarFila);
+            return json;
+
+        })
+        .then((json) => {
+            $("#tbl_trabajadores").DataTable();
+        })
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+//Completar fila
+function completarFila(element, index, arr) {
+    arr[index] = document.querySelector('#tbl_trabajadores tbody').innerHTML +=
+        `<tr>
+       <td>${element.rut}</td>
+       <td>${element.nombre}</td>
+       <td>${element.sexo}</td>
+       <td>${formatDate(element.fecha_nacimiento)}</td>
+       <td>${element.direccion}</td>
+       <td>${element.telefono}</td>
+       <td> <a href='eliminar-trabajador.html?id=${element.rut}&nombre=${element.nombre}&iduser=${iduser}'>   <img alt='Eliminar trabajador' width=40 height=40 src='../img/eliminar_24x24.png'></a> </td>
+ <td> <a href='actualizar-trabajador.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> </td>
+ <td><a href='../datos-laborales/listar-datos-laborales.html?id=${element.rut}&iduser=${iduser}'> <img alt='Datos laborales' width=50 height=50  src='../img/resultados_640x640.png'></a> </td>
+ <td><a href='../contacto-emergencia/listar-contacto-emergencia.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/emergencia_48x48.png'></a></td>
+ <td><a href='../carga-familiar/listar-carga-familiar.html?id=${element.rut}&iduser=${iduser}'> <img src='../img/carga_familiar_48x48.png'></a> </td>
  </td>
    </tr>`
 }
@@ -156,6 +182,7 @@ function formatDate2(date) {
 
     return `${fecha.getFullYear()}-${month}-${day}`;
 }
+
 // Consultar datos del trabajador
 function consultarDatostrabajador(id_trabajador) {
     var requestOptions = {
@@ -184,6 +211,41 @@ function completarFormulario(element) {
     document.getElementById("txt_telefono").value = telefono;
 
 }
+function consultarDatosUsuario(id_trabajador) {
+    var username = id_trabajador
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "query": "select id_usuario, contrasena_usuario, perfil_usuario, estado FROM usuario WHERE rut_trabajador='" + username + "'"
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/dynamic", requestOptions)
+        .then(response => response.json())
+        .then((json) => {
+            json.forEach(completarFormularioUsuario);
+            console.log(json);
+        })
+
+}
+//Completar formulario
+function completarFormularioUsuario(element) {
+    var perfil= element.perfil_usuario;
+    var contraseña = element.contrasena_usuario;
+    var estado = element.estado;
+    document.getElementById("contraseña").value = contraseña;
+    document.getElementById("lista-estado").value = estado;
+    id_usuario_guardar=  element.id_usuario;
+    perfil_usuario_guardar = perfil;
+
+}
 
 //Obtenemos los datos del trabajador a actualizar
 function obtenerIDtrabajadorActualizar() {
@@ -193,10 +255,15 @@ function obtenerIDtrabajadorActualizar() {
 
     document.getElementById("txt_id_trabajador").value = id_trabajador_url;
     consultarDatostrabajador(id_trabajador_url);
+    consultarDatosUsuario(id_trabajador_url);
 
 }
 // Actualizamos los datos del trabajador con el método patch
-function actualizarTrabajador() {
+function actualizarTrabajador(){
+    this.actualizarTrabajadorPrincipal();
+    this.actualizarContraseñaEstado();
+}
+function actualizarTrabajadorPrincipal() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -206,6 +273,7 @@ function actualizarTrabajador() {
     var txt_fecha_nacimiento = document.getElementById("txt_fecha_nacimiento").value;
     var txt_direccion = document.getElementById("txt_direccion").value;
     var txt_telefono = document.getElementById("txt_telefono").value;
+    var estado_cuenta = document.getElementById("lista-estado").value;
 
     var raw = JSON.stringify({
         "rut": txt_id_trabajador,
@@ -228,12 +296,44 @@ function actualizarTrabajador() {
         .then(response => {
             if (response.ok) {
                 alert("Trabajador actualizado");
-                window.location.href = "listar-trabajadores.html";
             }
 
         })
 }
+function actualizarContraseñaEstado(){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var txt_id_trabajador = document.getElementById("txt_id_trabajador").value;
+    var txt_nombre = document.getElementById("txt_nombre").value;
+    var contraseña_actualizada = document.getElementById("contraseña").value;
+    var estado_usuario = document.getElementById("lista-estado").value;
+
+    var raw = JSON.stringify({
+        "id_usuario":id_usuario_guardar,
+        "nombre_usuario": txt_nombre,
+        "rut_trabajador": txt_id_trabajador,
+        "perfil_usuario": perfil_usuario_guardar,
+        "contrasena_usuario": contraseña_actualizada,
+        "estado": estado_usuario
+    });
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/api/usuario/" + id_usuario_guardar, requestOptions)
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "listar-trabajadores.html?iduser="+iduser;   
+            }
+
+        })
+    
+}
 //Obtenemos id del trabajador a eliminar
 function obtenerIDTrabajadorEliminar() {
     //Utilizamos search para acceder a las variables recibidas mediante URL
@@ -267,8 +367,20 @@ function eliminarTrabajador() {
             } else {
                 alert("Trabajador no puede ser eliminado. El registro está siendo utilizado")
             }
-            window.location.href = "listar-trabajadores.html";
+            window.location.href = "listar-trabajadores.html?iduser="+iduser;
 
         })
 }
 
+function filtroAcepta(){
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_trabajador_url = urlParametros.get('iduser');
+    window.location.href= "C:/xampp/htdocs/Proyectos/yury/index-jefe.html?iduser="+id_trabajador_url;
+}
+function filtroInicio(){
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_trabajador_url = urlParametros.get('iduser');
+    window.location.href= "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser="+id_trabajador_url;
+}

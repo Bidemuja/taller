@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Contacto de emergencia</title>
+    <title>Recursos humanos</title>
     <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="../contacto-emergencia.js"></script>
+    <script src="../trabajador.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -19,7 +19,7 @@
 
 </head>
 
-<body id="body" onload="listarContactoEmergencia();">
+<body id="body" onload="listarTrabajadoresJefe();">
     <!--Barra de Navegación-->
     <div class="container2">
         <div class="navbar">
@@ -31,38 +31,47 @@
                 <div></div>
                 <div></div>
                 <div></div>
-                </div>
+            </div>
             <div class="nav-items">
-                <a style="text-decoration: none;" onclick="agregarContactoEmergenciaRedireccion()" class="ui-btn">
+                <a style="text-decoration: none;" href="agregar-trabajador.html" class="ui-btn">
                     <span>
-                      Agregar Contacto
+                        Agregar Trabajador
                     </span>
                 </a>
                 <a style="text-decoration: none;" onclick="filtroInicio();" class="ui-btn">
                     <span>
-                      Inicio
+                        Inicio
                     </span>
                 </a>
                 <a style="text-decoration: none;" href="C:\xampp\htdocs\Proyectos\yury\index.html" class="ui-btn">
                     <span>
-                      Cerrar sesión
+                        Cerrar sesión
                     </span>
                 </a>
             </div>
         </div>
     </div>
-        <!--Título-->
-        <h1 class="text-white" id="titulo-contactos">Lista de contactos de emergencia</h1>
-        <div class="container">
-        <div class="container">
-            <table id="tbl_contacto_emergencia" class="table">
+    <!--Título-->
+    <h1 class="text-white">Recursos Humanos - Gestión de Trabajadores</h1>
+    <div class="container-fluid">
+        <div class="container3">
+            <table id="tbl_trabajadores" class="table">
                 <thead>
                     <tr>
                         <th>RUT</th>
                         <th>NOMBRE</th>
-                        <th>PARENTESCO</th>
-                        <th>TELÉFONO</th>
-                        <th>OPCIONES</th>
+                        <th>SEXO</th>
+                        <th>FECHA NAC.</th>
+                        <th>DIRECCIÓN</th>
+                        <th>CELULAR</th>
+                        <th>CARGO</th>
+                        <th>AREA</th>
+                        <th>DPTO</th>
+                        <th>BORRAR</th>
+                        <th>ACTUALIZAR</th>
+                        <th>DATOS LABORALES</th>
+                        <th>CONTACTO EMERGENCIA</th>
+                        <th>CARGAS FAMILIARES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +79,7 @@
                 </tbody>
             </table>
         </div>
-        </div>
+    </div>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 var queryString = window.location.search;
 var urlParametros = new URLSearchParams(queryString);
 var id_trabajador_contacto_url = urlParametros.get('id');
+var iduser = urlParametros.get('iduser');
 
 // Listar contactos de emergencia
 function listarContactoEmergencia() {
@@ -32,8 +33,8 @@ function completarFila(element, index, arr) {
           <td>${element.parentesco_contacto}</td>
           <td>${element.telefono_contacto}</td>
           <td>
-    <a href='eliminar-contacto-emergencia.html?id=${element.rut_contacto}&nombre=${element.nombre_contacto}&rut=${element.rut_trabajador}'>   <img src='../img/eliminar_24x24.png'></a> 
-    <a href='actualizar-contacto-emergencia.html?id=${element.rut_contacto}&idtrab=${element.rut_trabajador}'> <img src='../img/actualizar_24x24.png'></a> 
+    <a href='eliminar-contacto-emergencia.html?id=${element.rut_contacto}&nombre=${element.nombre_contacto}&rut=${element.rut_trabajador}&iduser=${iduser}'>   <img src='../img/eliminar_24x24.png'></a> 
+    <a href='actualizar-contacto-emergencia.html?id=${element.rut_contacto}&idtrab=${element.rut_trabajador}&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> 
     </td>
   
       </tr>`
@@ -75,7 +76,7 @@ function crearContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia agregado");
-                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url;
+                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url+"&iduser="+iduser;
             }
         })
 }
@@ -150,7 +151,7 @@ function actualizarContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia actualizado");
-                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url;
+                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador_url+"&iduser="+iduser;
             }
 
         })
@@ -192,7 +193,7 @@ function eliminarContactoEmergencia() {
         .then(response => {
             if (response.ok) {
                 alert("Contacto de emergencia eliminado");
-                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador;
+                window.location.href = "listar-contacto-emergencia.html?id=" + rut_trabajador+"&iduser="+iduser;
             } else {
                 alert("Contacto de emergencia no puede ser eliminado.")
             }
@@ -204,5 +205,11 @@ function agregarContactoEmergenciaRedireccion() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_contacto_url = urlParametros.get('id');
-    window.location.href = "C:/xampp/htdocs/Proyectos/yury/contacto-emergencia/agregar-contacto-emergencia.html?id=" + id_contacto_url;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/contacto-emergencia/agregar-contacto-emergencia.html?id=" + id_contacto_url+"&iduser="+iduser;
+}
+function filtroInicio(){
+    var queryString = window.location.search;
+    var urlParametros = new URLSearchParams(queryString);
+    var id_trabajador_url = urlParametros.get('iduser');
+    window.location.href= "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser="+id_trabajador_url+"&iduser="+iduser;
 }
