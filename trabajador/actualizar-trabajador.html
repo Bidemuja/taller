@@ -80,7 +80,7 @@
                 <!--Sexo-->
                 <div style="margin-bottom: 20px;">
                     <label for="lista-sexo">Sexo</label>
-                    <select id="lista-sexo" class="form-select" aria-label="">
+                    <select id="lista-sexo" class="form-select" aria-label="" required>
                         <option value="Femenino">Femenino</option>
                         <option value="Masculino">Masculino</option>
                     </select>
@@ -103,19 +103,19 @@
                 <div class="mb-3">
                     <label for="txt_telefono" class="form-label">Teléfono</label>
                     <input type="number" class="form-control" id="txt_telefono" aria-describedby="txt_celular_help"
-                        value="0">
+                        value="0" required>
                     <div id="txt_telefono_help" class="form-text">Sin +569. Máximo 8 números</div>
                 </div>
                 <!--Contraseña-->
                 <div class="mb-3">
                     <label for="contraseña" class="form-label">Contraseña</label>
-                    <input type="text" class="form-control" id="contraseña" aria-describedby="txt_nombres_help">
+                    <input type="text" class="form-control" id="contraseña" aria-describedby="txt_nombres_help" required>
                     <div id="txt_nombre_help" class="form-text">Actualizar contraseña</div>
                 </div>
                 <!--Estado de la cuenta-->
                 <div style="margin-bottom: 20px;">
                     <label for="lista-estado">Estado de la cuenta</label>
-                    <select id="lista-estado" class="form-select" aria-label="">
+                    <select id="lista-estado" class="form-select" aria-label=""required>
                         <option value="Habilitado">Habilitado</option>
                         <option value="Inhabilitado">Inhabilitado</option>
                     </select>
