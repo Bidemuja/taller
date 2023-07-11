@@ -3,6 +3,10 @@ var urlParametros = new URLSearchParams(queryString);
 var id_contacto_url = urlParametros.get('id');
 var iduser = urlParametros.get('iduser');
 
+    var caracteres_especiales = /^[a-z ñÑ A-ZáéíóúÁÉÍÓÚ]{1,55}$/;
+    var rutValido = /^\d{1,2}\d{6}-\d{1}k?$/i;
+
+
 // Lista de Cargas familiares
 function listarCargasFamiliares() {
     var requestOptions = {
@@ -206,4 +210,29 @@ function filtroInicio(){
     var urlParametros = new URLSearchParams(queryString);
     var id_trabajador_url = urlParametros.get('iduser');
     window.location.href= "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser="+id_trabajador_url;
+}
+
+function validarCamposCrear() {
+    var txt_rut_carga = document.getElementById("txt_rut_carga").value;
+    var txt_nombre_carga = document.getElementById("txt_nombre_carga").value;
+    var seleccion_sexo_carga = document.getElementById("lista-sexo").value;
+    var seleccion_parentesco_carga = document.getElementById("lista-parentesco").value;
+    
+    if (txt_rut_carga === "" || !rutValido.test(txt_rut_carga)) {
+        alert("Complete RUT antes de enviar el formulario. Ingrese el rut sin puntos y con guión");
+    } else {
+        if (txt_nombre_carga === "" || ! caracteres_especiales.test(txt_nombre_carga)) {
+            alert("Ingrese su nombre completo antes de enviar el formulario. No utilice números ni caracteres especiales");
+        } else {
+            if (seleccion_sexo_carga === "null") {
+                alert("Seleccione una opción de sexo antes de enviar el formulario");
+            } else {
+                if (seleccion_parentesco_carga === "null") {
+                    alert("Seleccione una opción de parentesco antes de enviar el formulario");
+                } else {
+                    crearCargaFamiliar();
+                }
+            }
+        }
+    }
 }

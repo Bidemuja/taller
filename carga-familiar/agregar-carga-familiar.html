@@ -67,7 +67,7 @@
             </div>
             <!--Sexo Carga-->
             <div style="margin-bottom: 20px;">
-                <label for="lista-sexo">Sexo</label>
+                <label for="lista-sexo" value="null">Sexo</label>
                 <select id="lista-sexo" class="form-select" aria-label=""required>
                     <option selected disabled>Seleccione una opción</option>
                     <option value="Femenino">Femenino</option>
@@ -78,7 +78,7 @@
             <div style="margin-bottom: 20px;">
                 <label for="lista-parentesco">Parentesco</label>
                 <select id="lista-parentesco" class="form-select" aria-label="" required>
-                    <option selected disabled>Seleccione una opción</option>
+                    <option selected disabled value="null">Seleccione una opción</option>
                     <option value="Cónyuge">Cónyuge</option>
                     <option value="Conviviente">Conviviente</option>
                     <option value="Hijo(a)">Hijo(a)</option>
@@ -88,52 +88,11 @@
                 </select>
             </div>
             <!--Botón de envío-->
-            <input type="button" class="btn btn-primary" onclick="crearCargaFamiliar();" value="Enviar"></button>
+            <input type="button" class="btn btn-primary" onclick="validarCamposCrear();" value="Enviar"></button>
         </form>
     </div>
     </div>
     </div>
-    <script>
-        function validarFormulario(event) {
-            event.preventDefault();
-
-            var rutCarga = document.getElementById("txt_rut_carga").value;
-            var nombreCarga = document.getElementById("txt_nombre_carga").value;
-            var sexo = document.getElementById("lista-sexo").value;
-            var parentesco = document.getElementById("lista-parentesco").value;
-
-            var rutValido = /^\d{1,2}\d{6}-\d{1}k?$/i;
-            var errores = [];
-
-            if (!rutValido.test(rutCarga)) {
-                errores.push("Por favor, ingrese un Rut de carga válido.");
-            }
-
-            if (nombreCarga.trim() === "") {
-                errores.push("Por favor, ingrese el nombre completo de carga.");
-            }
-
-            if (sexo === null || sexo === "") {
-                errores.push("Por favor, seleccione una opción en el campo de sexo.");
-            }
-
-            if (parentesco === null || parentesco === "") {
-                errores.push("Por favor, seleccione una opción en el campo de parentesco.");
-            }
-
-            if (errores.length > 0) {
-                mostrarErrores(errores);
-                return;
-            }
-
-        }
-
-        function mostrarErrores(errores) {
-            var mensaje = "Se encontraron los siguientes errores:\n\n";
-            mensaje += errores.join("\n");
-            alert(mensaje);
-        }
-    </script>
 </body>
 
 </html>
