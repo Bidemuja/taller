@@ -10,44 +10,56 @@ function listarDatosLaborales() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/datos_laborales", requestOptions)
-        .then(response => response.json())
-        .then((json) => {
-            json.forEach(completarFila);
-            return json;
-        })
-        .then((json) => {
-            $("#tbl_datos_laborales").DataTable();
-        })
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+    fetch("http://localhost:3000/api/datos_laborales", requestOptions).then(response => response.json()).then((json) => {
+        json.forEach(completarFila);
+        return json;
+    }).then((json) => {
+        $("#tbl_datos_laborales").DataTable();
+    }).then(result => console.log(result)).catch(error => console.log('error', error));
 }
 
-//Completar fila datos laborales
+// Completar fila datos laborales
 function completarFila(element, index, arr) {
     if (element.rut_trabajador === id_trabajador_contacto_url) {
-        arr[index] = document.querySelector('#tbl_datos_laborales tbody').innerHTML +=
-            `<tr>
-          <td>${element.rut_trabajador}</td>
-          <td>${element.cargo_trabajador}</td>
-          <td>${formatDate(element.fecha_ingreso)}</td>
-          <td>${element.area_trabajador}</td>
-          <td>${element.departamento_trabajador}</td>
+        arr[index] = document.querySelector('#tbl_datos_laborales tbody').innerHTML += `<tr>
+          <td>${
+            element.rut_trabajador
+        }</td>
+          <td>${
+            element.cargo_trabajador
+        }</td>
+          <td>${
+            formatDate(element.fecha_ingreso)
+        }</td>
+          <td>${
+            element.area_trabajador
+        }</td>
+          <td>${
+            element.departamento_trabajador
+        }</td>
           <td>
-    <a href='eliminar-datos-laborales.html?iddatos=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}&iduser=${iduser}'> <img src='../img/eliminar_24x24.png'></a> 
-    <a href='actualizar-datos-laborales.html?iddato=${element.id_datos_laborales}&idtrab=${element.rut_trabajador}&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> 
+    <a href='eliminar-datos-laborales.html?iddatos=${
+            element.id_datos_laborales
+        }&idtrab=${
+            element.rut_trabajador
+        }&iduser=${iduser}'> <img src='../img/eliminar_24x24.png'></a> 
+    <a href='actualizar-datos-laborales.html?iddato=${
+            element.id_datos_laborales
+        }&idtrab=${
+            element.rut_trabajador
+        }&iduser=${iduser}'> <img src='../img/actualizar_24x24.png'></a> 
     </td>
   
       </tr>`
     }
 }
 
-//Agregar Datos Laborales
+// Agregar Datos Laborales
 function crearDatosLaborales() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    //Variables con los datos de formulario para agregar datos laborales
+    // Variables con los datos de formulario para agregar datos laborales
 
     var txt_cargo = document.getElementById("lista-cargo-trabajo").value;
     var fecha_ingreso = document.getElementById("txt_fecha_ingreso").value;
@@ -70,33 +82,44 @@ function crearDatosLaborales() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/datos_laborales", requestOptions)
-        .then(response => {
-            if (response.ok) {
-                alert("Datos laborales agregados");
-                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url+"&iduser="+iduser;
-            }
-        })
+    fetch("http://localhost:3000/api/datos_laborales", requestOptions).then(response => {
+        if (response.ok) {
+            alert("Datos laborales agregados");
+            window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url + "&iduser=" + iduser;
+        }
+    })
 }
 
-//ACTUALIZACIÓN DE DATOS LABORALES ________________________________________________________________________________________________________________________
+// ACTUALIZACIÓN DE DATOS LABORALES ________________________________________________________________________________________________________________________
 
 function formatDate(date) {
     const fecha = new Date(date);
 
-    const day = fecha.getDate() < 10 ? `0${fecha.getDate()}` : fecha.getDate();
-    const month = fecha.getMonth() < 10 ? `0${fecha.getMonth() + 1}` : fecha.getMonth() + 1;
+    const day = fecha.getDate() < 10 ? `0${
+        fecha.getDate()
+    }` : fecha.getDate();
+    const month = fecha.getMonth() < 10 ? `0${
+        fecha.getMonth() + 1
+    }` : fecha.getMonth() + 1;
 
-    return `${day}-${month}-${fecha.getFullYear()}`;
+    return `${day}-${month}-${
+        fecha.getFullYear()
+    }`;
 }
 
 function formatDate2(date) {
     const fecha = new Date(date);
 
-    const day = fecha.getDate() < 10 ? `0${fecha.getDate()}` : fecha.getDate();
-    const month = fecha.getMonth() < 10 ? `0${fecha.getMonth() + 1}` : fecha.getMonth() + 1;
+    const day = fecha.getDate() < 10 ? `0${
+        fecha.getDate()
+    }` : fecha.getDate();
+    const month = fecha.getMonth() < 10 ? `0${
+        fecha.getMonth() + 1
+    }` : fecha.getMonth() + 1;
 
-    return `${fecha.getFullYear()}-${month}-${day}`;
+    return `${
+        fecha.getFullYear()
+    }-${month}-${day}`;
 }
 // Consultar datos laborales
 function consultarDatosLaborales(id_datos_laborales) {
@@ -104,12 +127,9 @@ function consultarDatosLaborales(id_datos_laborales) {
         method: 'GET',
         redirect: 'follow'
     };
-    fetch("http://localhost:3000/api/datos_laborales/" + id_datos_laborales, requestOptions)
-        .then(response => response.json())
-        .then((json) => json.forEach(completarFormulario))
-        .catch(error => console.log('error', error));
+    fetch("http://localhost:3000/api/datos_laborales/" + id_datos_laborales, requestOptions).then(response => response.json()).then((json) => json.forEach(completarFormulario)).catch(error => console.log('error', error));
 }
-//Completar formulario 
+// Completar formulario
 function completarFormulario(element) {
     var txt_cargo = element.cargo_trabajador;
     var fecha_ingreso = formatDate2(element.fecha_ingreso);
@@ -123,7 +143,7 @@ function completarFormulario(element) {
 
 }
 
-//Obtenemos los datos de la carga familiar a actualizar
+// Obtenemos los datos de la carga familiar a actualizar
 function obtenerIDDatosActualizar() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
@@ -165,20 +185,18 @@ function actualizarDatosLaborales() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/datos_laborales/" + id_datos_laborales, requestOptions)
-        .then(response => {
-            if (response.ok) {
-                alert("Datos laborales actualizados");
-                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url+"&iduser="+iduser;
-            }
+    fetch("http://localhost:3000/api/datos_laborales/" + id_datos_laborales, requestOptions).then(response => {
+        if (response.ok) {
+            alert("Datos laborales actualizados");
+            window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url + "&iduser=" + iduser;
+        }
 
-        })
+    })
 }
 
-//ELIMINAR DATOS LABORALES_________________________________________________________________________________________________________________________
-//Obtenemos id del contacto de emergencia a eliminar
-function obtenerIDDatosEliminar() {
-    //Mostramos mensaje de confirmación
+// ELIMINAR DATOS LABORALES_________________________________________________________________________________________________________________________
+// Obtenemos id del contacto de emergencia a eliminar
+function obtenerIDDatosEliminar() { // Mostramos mensaje de confirmación
     var mensaje = "¿Desea eliminar los datos laborales?";
     document.getElementById("alt_eliminacion").innerHTML = mensaje;
 }
@@ -194,26 +212,49 @@ function eliminarDatosLaborales() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/datos_laborales/" + id_dato_url, requestOptions)
-        .then(response => {
-            if (response.ok) {
-                alert("Datos eliminados");
-                window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
-            } else {
-                alert("No puede eliminar los datos laborales.")
-            }
+    fetch("http://localhost:3000/api/datos_laborales/" + id_dato_url, requestOptions).then(response => {
+        if (response.ok) {
+            alert("Datos eliminados");
+            window.location.href = "listar-datos-laborales.html?id=" + id_trabajador_contacto_url;
+        } else {
+            alert("No puede eliminar los datos laborales.")
+        }
 
-        })
+    })
 }
 function agregarDatosLaboralesRedireccion() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_contacto_url = urlParametros.get('id');
-    window.location.href = "C:/xampp/htdocs/Proyectos/yury/datos-laborales/agregar-datos-laborales.html?id=" + id_contacto_url+"&iduser="+iduser;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/datos-laborales/agregar-datos-laborales.html?id=" + id_contacto_url + "&iduser=" + iduser;
 }
-function filtroInicio(){
+function filtroInicio() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
     var id_trabajador_url = urlParametros.get('iduser');
-    window.location.href= "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser="+id_trabajador_url+"&iduser="+iduser;
+    window.location.href = "C:/xampp/htdocs/Proyectos/yury/trabajador/listar-trabajadores.html?iduser=" + id_trabajador_url + "&iduser=" + iduser;
+}
+function validarCamposCrear() {
+    var txt_cargo = document.getElementById("lista-cargo-trabajo").value;
+    var fecha_ingreso = document.getElementById("txt_fecha_ingreso").value;
+    var seleccion_area = document.getElementById("lista-area-trabajo").value;
+    var seleccion_departamento = document.getElementById("lista-departamentos-trabajo").value;
+
+    if (txt_cargo === "null") {
+        alert("Seleccione una opción de cargo antes de enviar el formulario");
+    } else {
+        if (fecha_ingreso === "NaN-NaN-NaN") {
+            alert("Seleccione una fecha de ingreso válida")
+        } else {
+            if (seleccion_area === "Nan-NaN-NaN") {
+                alert("Seleccione una opción de área antes de enviar el formulario");
+            } else {
+                if (seleccion_departamento === "null") {
+                    alert("Seleccione una opción de departamento antes de enviar el formulario");
+                } else {
+                    crearDatosLaborales();
+                }
+            }
+        }
+    }
 }
