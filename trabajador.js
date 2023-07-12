@@ -1,13 +1,21 @@
+/**
+Clase encargada de gestionar los trabajadores de la empres.
+/
+class Trabajadores Manager {
+*/
 var queryString = window.location.search;
 var urlParametros = new URLSearchParams(queryString);
 var iduser = urlParametros.get('iduser');
 var caracteres_especiales = /^[a-z ñÑ A-ZáéíóúÁÉÍÓÚ]{1,55}$/;
 var rutValido = /^\d{1,2}\d{6}-\d{1}k?$/i;
-// Crear trabajador
+// Agrupa las funciones para agregar un nuevo trabajador
 function crearTrabajador() {
     this.crearTrabajadorTabla();
     this.crearTrabajadorUsuario();
 }
+/**
+ * Crea un trabajador con base en los datos de la tabla trabajador
+ */
 function crearTrabajadorTabla() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -43,6 +51,9 @@ function crearTrabajadorTabla() {
         }
     })
 }
+/**
+ * Crea un trabajador con base en los datos de la tabla usuario.
+ */
 function crearTrabajadorUsuario() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -68,6 +79,9 @@ function crearTrabajadorUsuario() {
 
 }
 // Lista de trabajadores
+/**
+ * * Obtiene la lista de trabajadores para el perfil de usuario Jefe de RRHH.
+ */
 function listarTrabajadoresJefe() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -89,6 +103,9 @@ function listarTrabajadoresJefe() {
     }).then(result => console.log(result)).catch(error => console.log('error', error));
 }
 // Completar fila
+/**
+Completa una fila de la tabla de trabajadores para el perfil de usuario Jefe de RRHH.
+*/
 function completarFilaJefe(element, index, arr) {
     arr[index] = document.querySelector('#tbl_trabajadores tbody').innerHTML += `<tr>
        <td>${
@@ -198,7 +215,7 @@ function completarFila(element, index, arr) {
  </td>
    </tr>`
 }
-
+/**Da formato a la fecha */
 function formatDate(date) {
     const fecha = new Date(date);
 
@@ -441,19 +458,23 @@ function validarCamposCrear() {
             if (seleccion_sexo === "null") {
                 alert("Seleccione una opción de sexo antes de enviar el formulario");
             } else {
-                if (txt_direccion === "") {
-                    alert("Ingrese una dirección antes de enviar el formulario.");
+                if (txt_fecha_nacimiento === "") {
+                    alert("Seleccione una fecha antes de enviar el formulario")
                 } else {
-                    if (txt_telefono === "0" || txt_telefono < 0) {
-                        alert("Ingrese un número de teléfono");
+                    if (txt_direccion === "") {
+                        alert("Ingrese una dirección antes de enviar el formulario.");
                     } else {
-                        if (seleccion_perfil === "null") {
-                            alert("Seleccione una opción de perfil antes de enviar el formulario");
+                        if (txt_telefono === "0" || txt_telefono < 0) {
+                            alert("Ingrese un número de teléfono");
                         } else {
-                            if (contraseña === "") {
-                                alert("Ingrese una contraseña antes de enviar el formulario.");
+                            if (seleccion_perfil === "null") {
+                                alert("Seleccione una opción de tipo de trabajador antes de enviar el formulario");
                             } else {
-                                this.crearTrabajador();
+                                if (contraseña === "") {
+                                    alert("Ingrese una contraseña antes de enviar el formulario.");
+                                } else {
+                                    this.crearTrabajador();
+                                }
                             }
                         }
                     }

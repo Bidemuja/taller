@@ -6,7 +6,6 @@ var iduser = urlParametros.get('iduser');
 var caracteres_especiales = /^[a-z ñÑ A-ZáéíóúÁÉÍÓÚ]{1,55}$/;
 var rutValido = /^\d{1,2}\d{6}-\d{1}k?$/i;
 
-
 // Listar contactos de emergencia
 function listarContactoEmergencia() {
     var requestOptions = {
@@ -118,7 +117,7 @@ function completarFormulario(element) {
 
 }
 
-// Obtenemos los datos de la carga familiar a actualizar
+// Obtenemos los datos del contacto a actualizar
 function obtenerIDContactoActualizar() {
     var queryString = window.location.search;
     var urlParametros = new URLSearchParams(queryString);
@@ -127,7 +126,7 @@ function obtenerIDContactoActualizar() {
     document.getElementById("txt_rut_contacto").value = id_contacto_url;
     consultarDatosContactoEmergencia(id_contacto_url);
 }
-// Actualizamos los datos de la carga familiar con el método patch
+// Actualizamos los datos del contacto con el método patch
 function actualizarContactoEmergencia() {
 
     var queryString = window.location.search;

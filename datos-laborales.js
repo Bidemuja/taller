@@ -142,7 +142,6 @@ function completarFormulario(element) {
     document.getElementById("lista-departamentos-trabajo").value = seleccion_departamento;
 
 }
-
 // Obtenemos los datos de la carga familiar a actualizar
 function obtenerIDDatosActualizar() {
     var queryString = window.location.search;
@@ -243,10 +242,10 @@ function validarCamposCrear() {
     if (txt_cargo === "null") {
         alert("Seleccione una opción de cargo antes de enviar el formulario");
     } else {
-        if (fecha_ingreso === "NaN-NaN-NaN") {
-            alert("Seleccione una fecha de ingreso válida")
+        if (fecha_ingreso === "") {
+            alert("Seleccione una fecha antes de enviar el formulario")
         } else {
-            if (seleccion_area === "Nan-NaN-NaN") {
+            if (seleccion_area === "null") {
                 alert("Seleccione una opción de área antes de enviar el formulario");
             } else {
                 if (seleccion_departamento === "null") {
